@@ -7,19 +7,24 @@ import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+    
 @Data //Crea AllArgsConstructor, Getters, Setters, Equals, HashCode and ToString
 @NoArgsConstructor
 @Entity
-@Table(name = "mensajes")
-public class Mensaje {
-    
+@Table(name = "resenas")
+public class Resena{
+        
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    private Long id;        
+    private String valoracion;
     private String contenido;
     @CreationTimestamp
-    @Column(name="fecha_envio", updatable = false)
-    private LocalDateTime fechaEnvio; 
+    @Column(updatable = false)
+    private LocalDateTime fecha;
+       
     
+    //Falta agregar la relación con las otras tablas
+
 }
