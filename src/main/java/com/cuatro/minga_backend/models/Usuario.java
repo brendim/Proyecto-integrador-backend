@@ -33,17 +33,17 @@ public class Usuario {
 
     //Relaciones con otras entidades
 
-    /* //Un usuario puede mandar muchos mensajes
+    //Un usuario puede mandar muchos mensajes
     @OneToMany(mappedBy = "usuario")
     private List<Mensaje> mensajes;
 
-    //Un usuario es de una comuna
+    //Un usuario es de una comuna y una comuna puede tener muchos usuarios
     @ManyToOne
     @JoinColumn(name = "comuna_id")
     private Comuna comuna;
 
     //Un usuario puede hacer muchas reseñas
     @OneToMany(mappedBy = "usuario")
-    private List<Resena> resenas; */
+    private List<Resena> resenas;
     
 }
