@@ -1,6 +1,7 @@
 package com.cuatro.minga_backend.models;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -28,6 +29,12 @@ public class Colaborador {
     private String password;
     private Byte disponibilidad;
     private Integer puntuacion;
-
+    //Relaciones con entidades
+    //Mensajeria
+    @OneToMany(mappedBy = "Colaborador")
+    private List<Mensaje>  mensajes;
+    //Resenas
+    @OneToMany(mappedBy = "Colaborador")
+    private List<Resena> resenas;
     
 }
