@@ -1,10 +1,7 @@
 package com.cuatro.minga_backend.models;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
 import org.hibernate.annotations.CreationTimestamp;
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,10 +24,10 @@ public class Mensaje {
     /*Varios mensajes pueden ser escritos por un usuario*/
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private List<Usuario> usuarios;
+    private Usuario usuario;
 
     /*Varias mensajes pueden ser escritas por un colaborador  */
     @ManyToOne
     @JoinColumn(name = "colaborador_id")
-    private List<Colaborador> colaboradores;
-   }
+    private Colaborador colaborador;
+}

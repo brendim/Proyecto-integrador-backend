@@ -1,10 +1,7 @@
 package com.cuatro.minga_backend.models;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
 import org.hibernate.annotations.CreationTimestamp;
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +14,6 @@ public class Resena{
         
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;        
     private String valoracion;
     private String contenido;
@@ -28,11 +24,11 @@ public class Resena{
    // Varias reseñas pueden ser escritas por un usuario
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    private List<Usuario> usuarios;
+    private Usuario usuario;
 
    // Varias reseñas pueden ser escritas por un colaborador
     @ManyToOne
     @JoinColumn(name = "colaborador_id")
-    private List<Colaborador> colaboradores;
+    private Colaborador colaborador;
 
 }
