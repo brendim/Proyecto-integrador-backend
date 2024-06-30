@@ -1,6 +1,7 @@
 package com.cuatro.minga_backend.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -24,7 +25,14 @@ public class Resena{
     @Column(updatable = false)
     private LocalDateTime fecha;
        
-    
-    //Falta agregar la relación con las otras tablas
+   // Varias reseñas pueden ser escritas por un usuario
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private List<Usuario> usuarios;
+
+   // Varias reseñas pueden ser escritas por un colaborador
+    @ManyToOne
+    @JoinColumn(name = "colaborador_id")
+    private List<Colaborador> colaboradores;
 
 }
