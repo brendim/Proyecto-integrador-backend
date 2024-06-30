@@ -29,12 +29,26 @@ public class Colaborador {
     private String password;
     private Byte disponibilidad;
     private Integer puntuacion;
+    
     //Relaciones con entidades
     //Mensajeria
-    @OneToMany(mappedBy = "Colaborador")
+    @OneToMany(mappedBy = "colaborador") // correguir "colaborador"
     private List<Mensaje>  mensajes;
     //Resenas
-    @OneToMany(mappedBy = "Colaborador")
+    @OneToMany(mappedBy = "colaborador") // correguir "colborador"
     private List<Resena> resenas;
-    
-}
+    // Creacion de tabla intermedia Categoria_colaborador
+    @ManyToMany
+    @JoinTable(
+        name = "categorias_colaboradores",
+        joinColumns = @JoinColumn(name = "colaborador_id"),
+        inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    private List<Categoria> categorias;
+
+    @ManyToMany
+    @JoinTable(
+        name = "comunas_colaboradores",
+        joinColumns = @JoinColumn(name = "colaborador_id"),
+        inverseJoinColumns = @JoinColumn(name = "comuna_id"))
+    private List<Comuna> comunas;
+};
