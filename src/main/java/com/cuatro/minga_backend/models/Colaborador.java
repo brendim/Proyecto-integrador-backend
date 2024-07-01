@@ -15,7 +15,7 @@ public class Colaborador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
-    private Long rut;
+    private String rut;
     private String nombre;
     @Column(name="apellido_paterno")
     private String apellidoPaterno;
@@ -29,13 +29,12 @@ public class Colaborador {
     private String password;
     private Byte disponibilidad;
     private Integer puntuacion;
-    
     //Relaciones con entidades
     //Mensajeria
-    @OneToMany(mappedBy = "colaborador") // correguir "colaborador"
+    @OneToMany(mappedBy = "colaboradores") // correguir "colaborador"
     private List<Mensaje>  mensajes;
     //Resenas
-    @OneToMany(mappedBy = "colaborador") // correguir "colborador"
+    @OneToMany(mappedBy = "colaboradores") // correguir "colborador"
     private List<Resena> resenas;
     // Creacion de tabla intermedia Categoria_colaborador
     @ManyToMany
