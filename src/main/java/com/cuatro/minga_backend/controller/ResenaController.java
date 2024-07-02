@@ -11,12 +11,7 @@ import com.cuatro.minga_backend.service.ResenaService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
-
 
 @RestController
 
@@ -24,10 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/resenas")
  
 public class ResenaController {
+    
     @Autowired
-
-
-
     private ResenaService resenaService;
 
     @GetMapping
@@ -39,19 +32,14 @@ public class ResenaController {
     public Resena getResenaById(Long id){
         return resenaService.getResenaById(id);
     }
-    
 
     @PostMapping         
     public Resena saveResena(Resena resena){
     return resenaService.createResena(resena);
     }
 
-
     @DeleteMapping
     public void deleteResena(Resena resena){
         resenaService.deleteResena(resena);
     }
-
-
-
 }

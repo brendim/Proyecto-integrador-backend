@@ -66,23 +66,23 @@ public class ColaboradorService {
     public Colaborador getColaboradorByRutAndPassword(String rut, String password) {
         return colaboradorRepository.findByRutAndPassword(rut, password);
     }
-    public List<Colaborador> getColaboradorByComunaIn(List<Comuna> comunas) {
-        return colaboradorRepository.findByComunaIn(comunas);
+    public List<Colaborador> getColaboradorByComunasIn(List<Comuna> comunas) {
+        return colaboradorRepository.findByComunasIn(comunas);
     }
     public List<Colaborador> getColaboradorByComunaInAndDisponibilidad(List<Comuna> comunas, Byte disponibilidad) {
-        return colaboradorRepository.findByComunaInAndDisponibilidad(comunas, disponibilidad);
+        return colaboradorRepository.findByComunasInAndDisponibilidad(comunas, disponibilidad);
     }
     public List<Colaborador> getColaboradorByComunaInAndPuntuacion(List<Comuna> comunas, Integer puntuacion) {
-        return colaboradorRepository.findByComunaInAndPuntuacion(comunas, puntuacion);
+        return colaboradorRepository.findByComunasInAndPuntuacion(comunas, puntuacion);
     }
     public List<Colaborador> getColaboradorByCategoriaIn(List<Categoria> categorias) {
-        return colaboradorRepository.findByCategoriaIn(categorias);
+        return colaboradorRepository.findByCategoriasIn(categorias);
     }
     public List<Colaborador> getColaboradorByCategoriaInAndDisponibilidad(List<Categoria> categorias, Byte disponibilidad) {
-        return colaboradorRepository.findByCategoriaInAndDisponibilidad(categorias, disponibilidad);
+        return colaboradorRepository.findByCategoriasInAndDisponibilidad(categorias, disponibilidad);
     }
     public List<Colaborador> getColaboradorByCategoriasInAndPuntuacion(List<Categoria> categorias, Integer puntuacion) {
-        return colaboradorRepository.findByCategoriaInAndPuntuacion(categorias, puntuacion);
+        return colaboradorRepository.findByCategoriasInAndPuntuacion(categorias, puntuacion);
     }
 
     public List<Colaborador> getAllColaboradores(){

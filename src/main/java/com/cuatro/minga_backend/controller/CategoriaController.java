@@ -54,6 +54,5 @@ public class CategoriaController {
     public Categoria updateCategoria(Long id, Categoria categoria) {
         categoria.setId(id);
         return categoriaService.updateCategoria(categoria);
-    
     }
 }

@@ -10,6 +10,7 @@ import com.cuatro.minga_backend.models.Categoria;
 
 @Repository
 public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
+    
     Colaborador findByRut(String rut);
     Colaborador findByNombre(String nombre);
     Colaborador findByApellidoPaterno(String apellidoPaterno);
@@ -26,17 +27,16 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
     Colaborador findByDisponibilidadAndPuntuacion(Byte disponibilidad, Integer puntuacion);
     Colaborador findByRutAndPassword(String rut, String password);
     //Busqueda por comuna
-    List<Colaborador> findByComunaIn(List<Comuna> comunas);
-    List<Colaborador> findByComunaInAndDisponibilidad(List<Comuna> comunas, Byte disponibilidad);
-    List<Colaborador> findByComunaInAndPuntuacion(List<Comuna> comunas, Integer puntuacion);
+    List<Colaborador> findByComunasIn(List<Comuna> comunas);
+    List<Colaborador> findByComunasInAndDisponibilidad(List<Comuna> comunas, Byte disponibilidad);
+    List<Colaborador> findByComunasInAndPuntuacion(List<Comuna> comunas, Integer puntuacion);
     //Busqueda por categoria
-    List<Colaborador> findByCategoriaIn(List<Categoria> categorias);
-    List<Colaborador> findByCategoriaInAndDisponibilidad(List<Categoria> categorias, Byte disponibilidad);
-    List<Colaborador> findByCategoriaInAndPuntuacion(List<Categoria> categorias, Integer puntuacion);
+    List<Colaborador> findByCategoriasIn(List<Categoria> categorias);
+    List<Colaborador> findByCategoriasInAndDisponibilidad(List<Categoria> categorias, Byte disponibilidad);
+    List<Colaborador> findByCategoriasInAndPuntuacion(List<Categoria> categorias, Integer puntuacion);
     
     boolean existsByRut(String rut);
     boolean existsByEmail(String email);
-    boolean existByCelular(String celular);
-    
-
+    /* Comentada porque genera problemas con JPA, que aun no entendemos */
+    /* boolean existByCelular(String celular); */
 }

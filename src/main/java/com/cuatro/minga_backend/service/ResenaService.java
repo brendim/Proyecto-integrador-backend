@@ -12,9 +12,6 @@ import com.cuatro.minga_backend.repository.ResenaRepository;
 
 public class ResenaService {
 
-
-    
-    
     @Autowired
     private ResenaRepository resenaRepository;
 
@@ -40,8 +37,6 @@ public class ResenaService {
     public void deleteResena(Resena resena){
         resenaRepository.delete(resena);
     }
-
-   
 }
 
 

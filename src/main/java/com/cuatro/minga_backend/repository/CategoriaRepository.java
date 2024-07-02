@@ -13,10 +13,10 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
     
 
     //Buscar por nombre
-    Categoria findByName(String nombre);
+    Categoria findByNombre(String nombre);
 
     //Buscar por subcategoria
-    Categoria findBySubCategoria(String subcategoria);
+    Categoria findBySubcategoria(String subcategoria);
 
    
 }

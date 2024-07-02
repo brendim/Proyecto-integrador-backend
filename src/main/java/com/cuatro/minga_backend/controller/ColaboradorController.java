@@ -25,13 +25,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 @RequestMapping("/api/colaborador")
 public class ColaboradorController {
+    
     @Autowired
     private ColaboradorService colaboradorService;
-    /**@Autowired
-    private ComunaRepository comunaRepository;
-    @Autowired
-    private CategoriaRepository categoriaRepository;
-    **/
+
     //Las mil y una busquedas
     @GetMapping("/{id}")
     public Colaborador getColaboradorByID(@PathVariable Long id) {
@@ -112,7 +109,7 @@ public class ColaboradorController {
         }
     @PostMapping("/colaboradorComunas")
         public List<Colaborador> getColaboradorPorComuna(@RequestBody List<Comuna> comunas) {  
-            return colaboradorService.getColaboradorByComunaIn(comunas); 
+            return colaboradorService.getColaboradorByComunasIn(comunas); 
         }
      @PostMapping("/comunaDisponibilidad")
      public List<Colaborador> getColaboradorByComunaAndDisponibilidad(@RequestBody List<Comuna> comunas, 
