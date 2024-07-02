@@ -15,4 +15,6 @@ public class Comuna {
     private String nombre;
 
     // Getters y setters generados por Lombok
+
+    
 }
