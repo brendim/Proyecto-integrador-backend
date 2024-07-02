@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cuatro.minga_backend.models.Colaborador;
 import com.cuatro.minga_backend.models.Comuna;
+import com.cuatro.minga_backend.models.Categoria;
 
 @Repository
 public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
@@ -15,8 +16,8 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
     Colaborador findByApellidoMaterno(String apellidoMaterno);
     Colaborador findByNombreAndApellidoPaterno(String nombre, String apellidoPaterno);
     Colaborador findByNombreAndApellidoMaterno(String nombre, String apellidoMaterno);
-    Colaborador findyByNombreAndApellidoPaternoAndApellidoMaterno(String nombre, String apellidoPaterno, String apellidoMaterno);
-    Colaborador findByApellidoMaternoAndApellidoPaterno(String apellidoPaterno, String apellidoMaterno);
+    Colaborador findByNombreAndApellidoPaternoAndApellidoMaterno(String nombre, String apellidoPaterno, String apellidoMaterno);
+    Colaborador findByApellidoPaternoAndApellidoMaterno(String apellidoPaterno, String apellidoMaterno);
     Colaborador findByEmail(String email);
     Colaborador findByCelular(String celular);
     Colaborador findByPassword(String password);
@@ -25,9 +26,13 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
     Colaborador findByDisponibilidadAndPuntuacion(Byte disponibilidad, Integer puntuacion);
     Colaborador findByRutAndPassword(String rut, String password);
     //Busqueda por comuna
-    Colaborador findByComuna(List<Comuna> comunas);
-    Colaborador findByComunaAndDisponibilidad(List<Comuna> comunas, Byte disponibilidad);
-    Colaborador findByComunaAndPuntuacion(List<Comuna> comunas, Integer puntuacion);
+    List<Colaborador> findByComunaIn(List<Comuna> comunas);
+    List<Colaborador> findByComunaInAndDisponibilidad(List<Comuna> comunas, Byte disponibilidad);
+    List<Colaborador> findByComunaInAndPuntuacion(List<Comuna> comunas, Integer puntuacion);
+    //Busqueda por categoria
+    List<Colaborador> findByCategoriaIn(List<Categoria> categorias);
+    List<Colaborador> findByCategoriaInAndDisponibilidad(List<Categoria> categorias, Byte disponibilidad);
+    List<Colaborador> findByCategoriaInAndPuntuacion(List<Categoria> categorias, Integer puntuacion);
     
     boolean existsByRut(String rut);
     boolean existsByEmail(String email);

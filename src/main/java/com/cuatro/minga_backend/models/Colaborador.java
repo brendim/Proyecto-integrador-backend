@@ -31,10 +31,10 @@ public class Colaborador {
     private Integer puntuacion;
     //Relaciones con entidades
     //Mensajeria
-    @OneToMany(mappedBy = "colaboradores") // correguir "colaborador"
+    @OneToMany(mappedBy = "colaborador") // correguir "colaborador"
     private List<Mensaje>  mensajes;
     //Resenas
-    @OneToMany(mappedBy = "colaboradores") // correguir "colborador"
+    @OneToMany(mappedBy = "colaborador") // correguir "colborador"
     private List<Resena> resenas;
     // Creacion de tabla intermedia Categoria_colaborador
     @ManyToMany
