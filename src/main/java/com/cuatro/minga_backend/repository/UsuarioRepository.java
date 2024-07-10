@@ -34,6 +34,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
     //Buscar por nombre, apellido paterno y apellido materno
     List<Usuario> findByNombreAndApellidoPaternoAndApellidoMaterno(String nombre, String apellidoPaterno, String apellidoMaterno);
 
+    //Buscar usuario por email y password
+    Usuario findByEmailAndPassword(String email, String password);
+
     //Comprobar si existe un usuario con ese rut
     boolean existsByRut(String rut);
 

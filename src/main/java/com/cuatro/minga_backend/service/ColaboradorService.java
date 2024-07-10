@@ -63,8 +63,8 @@ public class ColaboradorService {
     public Colaborador getColaboradorByDisponibilidadAndPuntuacion(Byte disponibilidad, Integer puntuacion) {
         return colaboradorRepository.findByDisponibilidadAndPuntuacion(disponibilidad, puntuacion);
     }
-    public Colaborador getColaboradorByEmailAndPassword(String rut, String password) {
-        return colaboradorRepository.findByEmailAndPassword(rut, password);
+    public Colaborador getColaboradorByEmailAndPassword(String email, String password) {
+        return colaboradorRepository.findByEmailAndPassword(email, password);
     }
     public List<Colaborador> getColaboradorByComunasIn(List<Comuna> comunas) {
         return colaboradorRepository.findByComunasIn(comunas);
@@ -96,6 +96,11 @@ public class ColaboradorService {
     }
     public Colaborador updateColaborador(Colaborador colaborador){
         return colaboradorRepository.save(colaborador);
+    }
+
+    /* Obtener a los colaboradores según su categoría y que se encuentren disponibles */
+    public List<Colaborador> findByCategoryAndDisponibilidad(String categoryName) {
+        return colaboradorRepository.findByCategoriasNombreAndDisponibilidadTrue(categoryName);
     }
 
     

@@ -42,4 +42,9 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    //Obtener usuario por email y password
+    public Usuario getUsuarioByEmailAndPassword(String email, String password){
+        return usuarioRepository.findByEmailAndPassword(email, password);
+    }
+
 }

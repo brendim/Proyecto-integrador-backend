@@ -58,11 +58,11 @@ public class UsuarioController {
         usuarioService.deleteUsuario(usuario);
     }
 
-//Inicio de sesion
-@GetMapping("/usuarioLogin")
-public Usuario getUsuarioByEmailAndPassword(
-    @RequestParam String email, 
-    @RequestParam String password){
-        return usuarioService.getUsuarioByEmailAndPassword(email, password);
+    //Inicio de sesion
+    @GetMapping("/usuarioLogin")
+    public Usuario getUsuarioByEmailAndPassword(
+        @RequestParam String email, 
+        @RequestParam String password){
+            return usuarioService.getUsuarioByEmailAndPassword(email, password);
     }
 }

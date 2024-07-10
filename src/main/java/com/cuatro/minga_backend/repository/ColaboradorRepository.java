@@ -2,6 +2,8 @@ package com.cuatro.minga_backend.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.cuatro.minga_backend.models.Colaborador;
@@ -25,7 +27,7 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
     Colaborador findByDisponibilidad(Byte disponibilidad);
     Colaborador findByPuntuacion(Integer puntuacion);
     Colaborador findByDisponibilidadAndPuntuacion(Byte disponibilidad, Integer puntuacion);
-    Colaborador findByRutAndPassword(String rut, String password);
+    Colaborador findByEmailAndPassword(String email, String password);
     //Busqueda por comuna
     List<Colaborador> findByComunasIn(List<Comuna> comunas);
     List<Colaborador> findByComunasInAndDisponibilidad(List<Comuna> comunas, Byte disponibilidad);
@@ -39,4 +41,6 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
     boolean existsByEmail(String email);
     /* Comentada porque genera problemas con JPA, que aun no entendemos */
     /* boolean existByCelular(String celular); */
+
+    List<Colaborador> findByCategoriasNombreAndDisponibilidadTrue(String categoryName);
 }

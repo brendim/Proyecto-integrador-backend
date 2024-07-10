@@ -26,7 +26,7 @@ public class MensajeController {
     @GetMapping 
     public List<Mensaje> getAllMensajes() {
         return mensajeService.getAllMensajes();
-        }
+    }
 
     @GetMapping("/{id}")
     public Mensaje getMensajeById(Long id){
