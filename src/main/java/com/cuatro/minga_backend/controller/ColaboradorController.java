@@ -4,14 +4,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cuatro.minga_backend.models.Colaborador;
 import com.cuatro.minga_backend.models.Comuna;
+import com.cuatro.minga_backend.DTO.ColaboradorDTO;
 import com.cuatro.minga_backend.models.Categoria;
+import com.cuatro.minga_backend.service.CategoriaService;
 import com.cuatro.minga_backend.service.ColaboradorService;
-/**import com.cuatro.minga_backend.repository.ComunaRepository;
-import com.cuatro.minga_backend.repository.CategoriaRepository; **/
+import com.cuatro.minga_backend.service.ComunaService;
+import com.cuatro.minga_backend.repository.ComunaRepository;
+import com.cuatro.minga_backend.repository.CategoriaRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 // import org.springframework.http.ResponseEntity; // Considerar uso de ResponseEntity para almacenar solicitudes HTTP
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +29,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/colaborador")
+@CrossOrigin("*")
 public class ColaboradorController {
     
     @Autowired
     private ColaboradorService colaboradorService;
+    @Autowired
+    private ComunaService comunaService;
+    @Autowired
+    private CategoriaService categoriaService;
 
     //Las mil y una busquedas
     @GetMapping("/{id}")
@@ -101,11 +111,11 @@ public class ColaboradorController {
     public Colaborador getColaboradorByDisponibilidadAndPuntuacion(@RequestParam Byte disponibilidad,@RequestParam Integer puntuacion){
     return colaboradorService.getColaboradorByDisponibilidadAndPuntuacion(disponibilidad, puntuacion);
     }
-    @GetMapping("/colaboradorPassword")
-    public Colaborador getColaboradorByRutAndPassword(
-        @RequestParam String rut, 
+    @GetMapping("/colaboradorLogin")
+    public Colaborador getColaboradorByEmailAndPassword(
+        @RequestParam String email, 
         @RequestParam String password){
-            return colaboradorService.getColaboradorByRutAndPassword(rut, password);
+            return colaboradorService.getColaboradorByEmailAndPassword(email, password);
         }
     @PostMapping("/colaboradorComunas")
         public List<Colaborador> getColaboradorPorComuna(@RequestBody List<Comuna> comunas) {  
@@ -125,6 +135,9 @@ public class ColaboradorController {
     public List<Colaborador> getColaboradorByCategoriaIn(@RequestBody List<Categoria> categorias){
         return colaboradorService.getColaboradorByCategoriaIn(categorias);
     }
+    
+    
+    
     @PostMapping("/colaboradorCetegoriaDisponibilidad")
     public List<Colaborador> getColaboradorByCategoriaInAndDisponibilidad(@RequestBody List<Categoria> categorias, @RequestParam Byte disponibilidad){
         return colaboradorService.getColaboradorByCategoriaInAndDisponibilidad(categorias, disponibilidad);
@@ -139,8 +152,32 @@ public class ColaboradorController {
         return colaboradorService.getAllColaboradores();
     }
     @PostMapping
-    public Colaborador createColaborador(@RequestBody Colaborador colaborador) {
-        return colaboradorService.createColaborador(colaborador);
+    public Colaborador createColaborador(@RequestBody ColaboradorDTO colaborador) {
+        List<String> comunas = colaborador.getComunas();
+        List<String> categorias = colaborador.getCategorias();
+        List<Categoria> categoriasColaborador = new ArrayList();
+        List<Comuna> comunasColaborador = new ArrayList();
+        for (String comuna : comunas) {
+            comunasColaborador.add(comunaService.findByNombre(comuna));
+        }
+        for (String categoria : categorias) {
+            categoriasColaborador.add(categoriaService.findByNombre(categoria));
+        }
+        System.out.println(comunaService.findByNombre("Santiago"));
+        Colaborador nuevoColaborador = Colaborador.builder().
+            nombre(colaborador.getNombre()).
+            apellidoMaterno(colaborador.getApellidoMaterno()).
+            apellidoPaterno(colaborador.getApellidoPaterno()).
+            rut(colaborador.getRut()).
+            fechaNacimiento(colaborador.getFechaNacimiento()).
+            email(colaborador.getEmail()).
+            celular(colaborador.getCelular()).
+            password(colaborador.getPassword()).
+            comunas(comunasColaborador).
+            categorias(categoriasColaborador).
+            build();
+        
+        return colaboradorService.createColaborador(nuevoColaborador);
     }
      @PutMapping("/{id}")
     public Colaborador updateColaborador(@PathVariable Long id, @RequestBody Colaborador colaborador) {

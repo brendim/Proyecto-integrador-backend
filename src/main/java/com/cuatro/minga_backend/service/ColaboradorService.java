@@ -63,8 +63,8 @@ public class ColaboradorService {
     public Colaborador getColaboradorByDisponibilidadAndPuntuacion(Byte disponibilidad, Integer puntuacion) {
         return colaboradorRepository.findByDisponibilidadAndPuntuacion(disponibilidad, puntuacion);
     }
-    public Colaborador getColaboradorByRutAndPassword(String rut, String password) {
-        return colaboradorRepository.findByRutAndPassword(rut, password);
+    public Colaborador getColaboradorByEmailAndPassword(String rut, String password) {
+        return colaboradorRepository.findByEmailAndPassword(rut, password);
     }
     public List<Colaborador> getColaboradorByComunasIn(List<Comuna> comunas) {
         return colaboradorRepository.findByComunasIn(comunas);
