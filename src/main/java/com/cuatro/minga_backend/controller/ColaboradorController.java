@@ -136,6 +136,11 @@ public class ColaboradorController {
         return colaboradorService.getColaboradorByCategoriaIn(categorias);
     }
     
+    /* Obtener a los colaboradores según su categoría y que se encuentren disponibles */
+    @GetMapping("/categoria/{category}")
+    public List<Colaborador> getColaboradoresByCategoryAndDisponibilidad(@PathVariable String category) {
+        return colaboradorService.findByCategoryAndDisponibilidad(category);
+    }
     
     
     @PostMapping("/colaboradorCetegoriaDisponibilidad")

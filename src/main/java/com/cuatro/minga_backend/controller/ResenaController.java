@@ -29,7 +29,7 @@ public class ResenaController {
     }
     
     @GetMapping("/{id}")
-    public Resena getResenaById(Long id){
+    public Resena getResenaById(@PathVariable Long id){
         return resenaService.getResenaById(id);
     }
 

@@ -3,6 +3,9 @@ package com.cuatro.minga_backend.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,12 +37,15 @@ public class Colaborador {
     private String password;
     private Byte disponibilidad;
     private Integer puntuacion;
+
     //Relaciones con entidades
     //Mensajeria
-    @OneToMany(mappedBy = "colaborador") // correguir "colaborador"
+    @OneToMany(mappedBy = "colaborador")
+    @JsonIgnore
     private List<Mensaje>  mensajes;
     //Resenas
-    @OneToMany(mappedBy = "colaborador") // correguir "colborador"
+    @OneToMany(mappedBy = "colaborador")
+    @JsonIgnore
     private List<Resena> resenas;
     // Creacion de tabla intermedia Categoria_colaborador
     @ManyToMany
