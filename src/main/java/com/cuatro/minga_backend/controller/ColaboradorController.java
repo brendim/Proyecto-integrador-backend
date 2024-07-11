@@ -137,16 +137,22 @@ public class ColaboradorController {
     }
     
     /* Obtener a los colaboradores según su categoría y que se encuentren disponibles */
-    @GetMapping("/categoria/{category}")
+    /* @GetMapping("/categoria/{category}")
     public List<Colaborador> getColaboradoresByCategoryAndDisponibilidad(@PathVariable String category) {
         return colaboradorService.findByCategoryAndDisponibilidad(category);
+    } */
+
+    /* Obtener a los colaboradores que se encuentren disponibles, según su categoria y su comuna */
+    
+    @GetMapping("/categoria/{nombre}")
+    public List<Colaborador> getColaboradoresByCategoria(
+            @PathVariable String nombre,
+            @RequestParam(required = false) String comuna,
+            @RequestParam(required = false) Integer puntuacion,
+            @RequestParam(required = false) Byte disponibilidad) {
+        return colaboradorService.findByCategoriaAndFilters(nombre, comuna, puntuacion, disponibilidad);
     }
     
-    
-    @PostMapping("/colaboradorCetegoriaDisponibilidad")
-    public List<Colaborador> getColaboradorByCategoriaInAndDisponibilidad(@RequestBody List<Categoria> categorias, @RequestParam Byte disponibilidad){
-        return colaboradorService.getColaboradorByCategoriaInAndDisponibilidad(categorias, disponibilidad);
-    }
     @PostMapping("/colaboradorCategoriaPuntacion")
     public List<Colaborador> getColaboradorByCategoriasInAndPuntuacion(@RequestBody List<Categoria> categorias, @RequestParam Integer puntuacion) {
         return colaboradorService.getColaboradorByCategoriasInAndPuntuacion(categorias, puntuacion);

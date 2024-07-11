@@ -103,6 +103,19 @@ public class ColaboradorService {
         return colaboradorRepository.findByCategoriasNombreAndDisponibilidadTrue(categoryName);
     }
 
+    public List<Colaborador> findByCategoriaAndFilters(String categoria, String comuna, Integer puntuacion, Byte disponibilidad) {
+        disponibilidad = (disponibilidad == null) ? 1 : disponibilidad;
+        if (comuna != null && puntuacion != null) {
+            return colaboradorRepository.findByCategoriaAndComunaAndPuntuacionAndDisponibilidad(categoria, comuna, puntuacion, disponibilidad);
+        } else if (comuna != null) {
+            return colaboradorRepository.findByCategoriaAndComunaAndDisponibilidad(categoria, comuna, disponibilidad);
+        } else if (puntuacion != null) {
+            return colaboradorRepository.findByCategoriaAndPuntuacionAndDisponibilidad(categoria, puntuacion, disponibilidad);
+        } else {
+            return colaboradorRepository.findByCategoriaAndDisponibilidad(categoria, disponibilidad);
+        }
+    }
+
     
 }
 

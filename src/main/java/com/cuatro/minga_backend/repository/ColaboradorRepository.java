@@ -43,4 +43,16 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
     /* boolean existByCelular(String celular); */
 
     List<Colaborador> findByCategoriasNombreAndDisponibilidadTrue(String categoryName);
+
+    @Query("SELECT c FROM Colaborador c JOIN c.categorias cat WHERE cat.nombre = :categoria AND c.disponibilidad = :disponibilidad")
+    List<Colaborador> findByCategoriaAndDisponibilidad(@Param("categoria") String categoria, @Param("disponibilidad") Byte disponibilidad);
+
+    @Query("SELECT c FROM Colaborador c JOIN c.categorias cat JOIN c.comunas com WHERE cat.nombre = :categoria AND com.nombre = :comuna AND c.disponibilidad = :disponibilidad")
+    List<Colaborador> findByCategoriaAndComunaAndDisponibilidad(@Param("categoria") String categoria, @Param("comuna") String comuna, @Param("disponibilidad") Byte disponibilidad);
+
+    @Query("SELECT c FROM Colaborador c JOIN c.categorias cat WHERE cat.nombre = :categoria AND c.puntuacion = :puntuacion AND c.disponibilidad = :disponibilidad")
+    List<Colaborador> findByCategoriaAndPuntuacionAndDisponibilidad(@Param("categoria") String categoria, @Param("puntuacion") Integer puntuacion, @Param("disponibilidad") Byte disponibilidad);
+
+    @Query("SELECT c FROM Colaborador c JOIN c.categorias cat JOIN c.comunas com WHERE cat.nombre = :categoria AND com.nombre = :comuna AND c.puntuacion = :puntuacion AND c.disponibilidad = :disponibilidad")
+    List<Colaborador> findByCategoriaAndComunaAndPuntuacionAndDisponibilidad(@Param("categoria") String categoria, @Param("comuna") String comuna, @Param("puntuacion") Integer puntuacion, @Param("disponibilidad") Byte disponibilidad);
 }
