@@ -37,6 +37,11 @@ public class ResenaService {
     public void deleteResena(Resena resena){
         resenaRepository.delete(resena);
     }
+
+    //Obtener reseñas por colaborador
+    public List<Resena> getResenasByColaboradorId(Long colaboradorId) {
+        return resenaRepository.findByColaboradorId(colaboradorId);
+    }
 }
 
 

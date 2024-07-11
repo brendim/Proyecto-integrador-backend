@@ -3,6 +3,8 @@ package com.cuatro.minga_backend.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +37,7 @@ public class Usuario {
 
     //Un usuario puede mandar muchos mensajes
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
     private List<Mensaje> mensajes;
 
     //Un usuario es de una comuna y una comuna puede tener muchos usuarios
@@ -44,6 +47,7 @@ public class Usuario {
 
     //Un usuario puede hacer muchas reseñas
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
     private List<Resena> resenas;
     
 }

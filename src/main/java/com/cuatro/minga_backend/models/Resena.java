@@ -2,6 +2,9 @@ package com.cuatro.minga_backend.models;
 
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +32,7 @@ public class Resena{
    // Varias reseñas pueden ser escritas por un colaborador
     @ManyToOne
     @JoinColumn(name = "colaborador_id")
+    @JsonIgnore
     private Colaborador colaborador;
 
 }

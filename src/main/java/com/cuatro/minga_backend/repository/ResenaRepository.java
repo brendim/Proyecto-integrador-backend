@@ -15,4 +15,7 @@ public interface ResenaRepository extends JpaRepository<Resena, Long>{
 
     /*Buscar por contenido */
     List <Resena> findByContenido(String contenido);
+
+    /*Buscar por colaborador */
+    List<Resena> findByColaboradorId(Long colaboradorId);
 } 
