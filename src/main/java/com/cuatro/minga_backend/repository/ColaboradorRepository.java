@@ -55,4 +55,7 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Long>{
 
     @Query("SELECT c FROM Colaborador c JOIN c.categorias cat JOIN c.comunas com WHERE cat.nombre = :categoria AND com.nombre = :comuna AND c.puntuacion = :puntuacion AND c.disponibilidad = :disponibilidad")
     List<Colaborador> findByCategoriaAndComunaAndPuntuacionAndDisponibilidad(@Param("categoria") String categoria, @Param("comuna") String comuna, @Param("puntuacion") Integer puntuacion, @Param("disponibilidad") Byte disponibilidad);
+
+    /* Obtener colaboradores según 2 o más caracteres que se reciban que coincidan con el inicio del nombre */
+    List<Colaborador> findByNombreStartingWithIgnoreCase(String name);
 }

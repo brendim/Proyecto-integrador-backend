@@ -135,15 +135,8 @@ public class ColaboradorController {
     public List<Colaborador> getColaboradorByCategoriaIn(@RequestBody List<Categoria> categorias){
         return colaboradorService.getColaboradorByCategoriaIn(categorias);
     }
-    
-    /* Obtener a los colaboradores según su categoría y que se encuentren disponibles */
-    /* @GetMapping("/categoria/{category}")
-    public List<Colaborador> getColaboradoresByCategoryAndDisponibilidad(@PathVariable String category) {
-        return colaboradorService.findByCategoryAndDisponibilidad(category);
-    } */
 
     /* Obtener a los colaboradores que se encuentren disponibles, según su categoria y su comuna */
-    
     @GetMapping("/categoria/{nombre}")
     public List<Colaborador> getColaboradoresByCategoria(
             @PathVariable String nombre,
@@ -151,6 +144,12 @@ public class ColaboradorController {
             @RequestParam(required = false) Integer puntuacion,
             @RequestParam(required = false) Byte disponibilidad) {
         return colaboradorService.findByCategoriaAndFilters(nombre, comuna, puntuacion, disponibilidad);
+    }
+
+    /* Obtener colaboradores según 2 o más caracteres que se reciban que coincidan con el inicio del nombre */
+    @GetMapping("/nombreLike")
+    public List<Colaborador> getColaboradoresByNombreLike(@RequestParam String nombre) {
+        return colaboradorService.findByNombreStartingWith(nombre);
     }
     
     @PostMapping("/colaboradorCategoriaPuntacion")

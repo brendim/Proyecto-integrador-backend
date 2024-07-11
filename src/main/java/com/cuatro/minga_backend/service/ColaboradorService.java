@@ -99,10 +99,6 @@ public class ColaboradorService {
     }
 
     /* Obtener a los colaboradores según su categoría y que se encuentren disponibles */
-    public List<Colaborador> findByCategoryAndDisponibilidad(String categoryName) {
-        return colaboradorRepository.findByCategoriasNombreAndDisponibilidadTrue(categoryName);
-    }
-
     public List<Colaborador> findByCategoriaAndFilters(String categoria, String comuna, Integer puntuacion, Byte disponibilidad) {
         disponibilidad = (disponibilidad == null) ? 1 : disponibilidad;
         if (comuna != null && puntuacion != null) {
@@ -114,6 +110,11 @@ public class ColaboradorService {
         } else {
             return colaboradorRepository.findByCategoriaAndDisponibilidad(categoria, disponibilidad);
         }
+    }
+
+    /* Obtener colaboradores según 2 o más caracteres que se reciban que coincidan con el inicio del nombre */
+    public List<Colaborador> findByNombreStartingWith(String nombre) {
+        return colaboradorRepository.findByNombreStartingWithIgnoreCase(nombre);
     }
 
     
