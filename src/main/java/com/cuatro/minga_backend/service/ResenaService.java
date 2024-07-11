@@ -4,9 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.cuatro.minga_backend.models.Colaborador;
 import com.cuatro.minga_backend.models.Resena;
+import com.cuatro.minga_backend.models.Usuario;
+import com.cuatro.minga_backend.repository.ColaboradorRepository;
 import com.cuatro.minga_backend.repository.ResenaRepository;
+import com.cuatro.minga_backend.repository.UsuarioRepository;
 
 @Service
 
@@ -14,6 +19,12 @@ public class ResenaService {
 
     @Autowired
     private ResenaRepository resenaRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private ColaboradorRepository colaboradorRepository;
 
     //Métodos personalizados
     //Pensando en CRUD (Create, Read, Update, Delete)
@@ -29,7 +40,13 @@ public class ResenaService {
     }
 
     //Guardar reseña
-    public Resena createResena(Resena resena){
+    @Transactional
+    public Resena createResena(Resena resena, Long usuarioId, Long colaboradorId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Colaborador colaborador = colaboradorRepository.findById(colaboradorId).orElseThrow(() -> new RuntimeException("Colaborador no encontrado"));
+        
+        resena.setUsuario(usuario);
+        resena.setColaborador(colaborador);
         return resenaRepository.save(resena);
     }
 

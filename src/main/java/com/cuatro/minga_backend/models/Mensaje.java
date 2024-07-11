@@ -3,7 +3,6 @@ package com.cuatro.minga_backend.models;
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -20,6 +19,9 @@ public class Mensaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
+    private String asunto;
     private String contenido;
     @CreationTimestamp
     @Column(name="fecha_envio", updatable = false)

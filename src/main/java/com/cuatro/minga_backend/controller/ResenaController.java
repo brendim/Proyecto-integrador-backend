@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cuatro.minga_backend.models.Mensaje;
 import com.cuatro.minga_backend.models.Resena;
 import com.cuatro.minga_backend.service.ResenaService;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/resenas")
@@ -34,9 +37,10 @@ public class ResenaController {
         return resenaService.getResenaById(id);
     }
 
-    @PostMapping         
-    public Resena saveResena(Resena resena){
-    return resenaService.createResena(resena);
+    @PostMapping
+    public ResponseEntity<Resena> createResena(@RequestBody Resena resena, @RequestParam Long usuarioId, @RequestParam Long colaboradorId) {
+        Resena savedResena = resenaService.createResena(resena, usuarioId, colaboradorId);
+        return ResponseEntity.ok(savedResena);
     }
 
     @DeleteMapping

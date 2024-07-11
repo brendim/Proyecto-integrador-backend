@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cuatro.minga_backend.models.Categoria;
-import com.cuatro.minga_backend.models.Comuna;
 import com.cuatro.minga_backend.repository.CategoriaRepository;
 
 @Service

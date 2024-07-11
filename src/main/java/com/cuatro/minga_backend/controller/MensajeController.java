@@ -4,7 +4,9 @@ package com.cuatro.minga_backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cuatro.minga_backend.models.Mensaje;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping ("/api/mensajes")
@@ -35,8 +38,9 @@ public class MensajeController {
     }
     
     @PostMapping
-    public Mensaje saveMensaje(Mensaje mensaje){
-        return mensajeService.createMensaje(mensaje);
+    public ResponseEntity<Mensaje> createMensaje(@RequestBody Mensaje mensaje, @RequestParam Long usuarioId, @RequestParam Long colaboradorId) {
+        Mensaje savedMensaje = mensajeService.createMensaje(mensaje, usuarioId, colaboradorId);
+        return ResponseEntity.ok(savedMensaje);
     }
     
     @DeleteMapping

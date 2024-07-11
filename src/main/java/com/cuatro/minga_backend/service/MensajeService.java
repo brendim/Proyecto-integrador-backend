@@ -4,42 +4,48 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.cuatro.minga_backend.models.Colaborador;
 import com.cuatro.minga_backend.models.Mensaje;
+import com.cuatro.minga_backend.models.Usuario;
+import com.cuatro.minga_backend.repository.ColaboradorRepository;
 import com.cuatro.minga_backend.repository.MensajeRepository;
+import com.cuatro.minga_backend.repository.UsuarioRepository;
 
 @Service
-
 public class MensajeService {
-
    
     @Autowired
     private MensajeRepository mensajeRepository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private ColaboradorRepository colaboradorRepository;
+
     //Métodos personalizados
     //Pensando en CRUD (Create, Read, Update, Delete)
 
-    /*Obtener mensaje por nombre y apellidos
-    public Mensaje getMensajeByNombre(Long ){
-        return mensajeRepository.findById(id).orElse(null);
-    } */
-
-    
     //Obtener mensaje por su id
     public Mensaje getMensajeById(Long id){
         return mensajeRepository.findById(id).orElse(null);
     }
-
-
-
 
     //Obtener todos los mensajes?
     public List<Mensaje> getAllMensajes(){
         return mensajeRepository.findAll();
     }
 
-    //crear mensaje? 
-    public Mensaje createMensaje(Mensaje mensaje){
+    
+   @Transactional
+    public Mensaje createMensaje(Mensaje mensaje, Long usuarioId, Long colaboradorId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Colaborador colaborador = colaboradorRepository.findById(colaboradorId).orElseThrow(() -> new RuntimeException("Colaborador no encontrado"));
+        
+        mensaje.setUsuario(usuario);
+        mensaje.setColaborador(colaborador);
         return mensajeRepository.save(mensaje);
     }
 
@@ -47,6 +53,7 @@ public class MensajeService {
     public void deleteMensaje(Mensaje mensaje){
         mensajeRepository.delete(mensaje);
     }
+
 
     
 

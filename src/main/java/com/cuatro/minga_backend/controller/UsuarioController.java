@@ -2,7 +2,6 @@ package com.cuatro.minga_backend.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cuatro.minga_backend.models.Comuna;
 import com.cuatro.minga_backend.service.ComunaService;
 import com.cuatro.minga_backend.models.Usuario;
 import com.cuatro.minga_backend.service.UsuarioService;

@@ -9,8 +9,6 @@ import com.cuatro.minga_backend.models.Categoria;
 import com.cuatro.minga_backend.service.CategoriaService;
 import com.cuatro.minga_backend.service.ColaboradorService;
 import com.cuatro.minga_backend.service.ComunaService;
-import com.cuatro.minga_backend.repository.ComunaRepository;
-import com.cuatro.minga_backend.repository.CategoriaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
