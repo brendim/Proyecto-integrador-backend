@@ -47,4 +47,18 @@ public class MensajeController {
     public void deleteMensaje (Mensaje mensaje){
         mensajeService.deleteMensaje(mensaje);
     }
+
+    @GetMapping("/{userType}/{userId}")
+    public ResponseEntity<List<Mensaje>> getMessages(@PathVariable String userType, @PathVariable Long userId) {
+        List<Mensaje> mensajes;
+        if ("usuario".equals(userType)) {
+            mensajes = mensajeService.getMessagesByUsuarioId(userId);
+        } else if ("colaborador".equals(userType)) {
+            mensajes = mensajeService.getMessagesByColaboradorId(userId);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(mensajes);
+    }
+    
 }

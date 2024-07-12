@@ -54,8 +54,13 @@ public class MensajeService {
         mensajeRepository.delete(mensaje);
     }
 
+    public List<Mensaje> getMessagesByUsuarioId(Long usuarioId) {
+        return mensajeRepository.findByUsuarioId(usuarioId);
+    }
 
-    
+    public List<Mensaje> getMessagesByColaboradorId(Long colaboradorId) {
+        return mensajeRepository.findByColaboradorId(colaboradorId);
+    }
 
 }
     
