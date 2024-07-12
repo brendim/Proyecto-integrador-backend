@@ -30,12 +30,10 @@ public class Mensaje {
     /*Varios mensajes pueden ser escritos por un usuario*/
     @ManyToOne
     @JoinColumn(name = "usuario_id")
-    @JsonIgnore
     private Usuario usuario;
 
     /*Varias mensajes pueden ser escritas por un colaborador  */
     @ManyToOne
     @JoinColumn(name = "colaborador_id")
-    @JsonIgnore
     private Colaborador colaborador;
 }
